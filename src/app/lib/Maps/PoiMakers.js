@@ -41,24 +41,32 @@ const PoiMarkers = ({ pois }) => {
     return (
         <>
             {pois.map((poi, index) => {
-                // 驗證 POI 資料
-                if (!poi.location || typeof poi.location.lat !== 'number' || typeof poi.location.lng !== 'number') {
+                // 驗證 POI 資料 - 修正資料結構檢查
+                if (!poi || typeof poi.lat !== 'number' || typeof poi.lng !== 'number') {
                     console.warn(`PoiMarkers - Invalid location for poi ${index}:`, poi);
                     return null;
                 }
 
-                const markerKey = poi.key || poi.name || `marker-${index}`;
+                const markerKey = poi.userId || poi.name || `marker-${index}`;
+                const position = { lat: poi.lat, lng: poi.lng };
 
                 console.log(`PoiMarkers - Rendering marker ${index}:`, {
                     key: markerKey,
-                    position: poi.location,
-                    userID: poi.userID
+                    position: position,
+                    userId: poi.userId
                 });
+
+                // 找到對應的產品
+                const poiProducts = products && Array.isArray(products)
+                    ? products.filter(product => product.userId === poi.userId)
+                    : [];
+
+                console.log(`PoiMarkers - Found ${poiProducts.length} products for user ${poi.userId}`);
 
                 return (
                     <React.Fragment key={markerKey}>
                         <AdvancedMarker
-                            position={poi.location}
+                            position={position}
                             onClick={() => handleMarkerClick(poi)}
                         >
                             <Pin
@@ -70,12 +78,12 @@ const PoiMarkers = ({ pois }) => {
 
                         {selectedPoi === poi && (
                             <InfoWindow
-                                position={poi.location}
+                                position={position}
                                 onCloseClick={handleInfoWindowClose}
                             >
                                 <Box style={{ marginBottom: '16px' }}>
                                     <Link
-                                        href={`https://www.google.com/maps?q=${poi.location.lat},${poi.location.lng}`}
+                                        href={`https://www.google.com/maps?q=${poi.lat},${poi.lng}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         style={{ textDecoration: 'none' }}
@@ -83,30 +91,34 @@ const PoiMarkers = ({ pois }) => {
                                         📍Go to the restaurant
                                     </Link>
                                     <Typography variant="h6" style={{ margin: '10px 0' }}>
-                                        {poi.name || poi.key || 'Unknown Restaurant'}
+                                        {poi.name || 'Unknown Restaurant'}
                                     </Typography>
-                                    <Typography variant="body2">
-                                        Tell the owner: {poi.secret || 'No secret available'}
+                                    <Typography variant="body2" style={{ marginBottom: '10px' }}>
+                                        Address: {poi.address}
                                     </Typography>
-                                    {products && Array.isArray(products) &&
-                                        products
-                                            .filter(product => product.userId === poi.userID)
-                                            .map(product => (
-                                                <div key={product._id}>
-                                                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                                                        <Typography style={{ marginLeft: '5px' }}>
-                                                            {product.dailyQuantity >= 5 ? "✅" : product.dailyQuantity > 0 ? "⚠️" : "⛔️"}
-                                                        </Typography>
-                                                        <Typography variant="body2" style={{ margin: '5px 0', marginLeft: '5px' }}>
-                                                            {product.productName}
-                                                        </Typography>
-                                                        <Typography variant="body2" style={{ marginLeft: '5px' }}>
-                                                            📆: to {product.campaignExpiration?.split('T')[0] || 'No date'}
-                                                        </Typography>
-                                                    </div>
+
+                                    {/* 顯示產品資訊 */}
+                                    {poiProducts.length > 0 ? (
+                                        poiProducts.map((product, productIndex) => (
+                                            <div key={product._id || `product-${productIndex}`} style={{ marginBottom: '8px' }}>
+                                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                    <Typography style={{ marginRight: '5px' }}>
+                                                        {product.dailyQuantity >= 5 ? "✅" : product.dailyQuantity > 0 ? "⚠️" : "⛔️"}
+                                                    </Typography>
+                                                    <Typography variant="body2" style={{ marginRight: '10px' }}>
+                                                        {product.productName || product.name || 'Unknown Product'}
+                                                    </Typography>
+                                                    <Typography variant="body2" style={{ fontSize: '0.8em', color: '#666' }}>
+                                                        📆: to {product.campaignExpiration?.split('T')[0] || 'No date'}
+                                                    </Typography>
                                                 </div>
-                                            ))
-                                    }
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <Typography variant="body2" style={{ color: '#666', fontStyle: 'italic' }}>
+                                            No products available
+                                        </Typography>
+                                    )}
                                 </Box>
                             </InfoWindow>
                         )}
