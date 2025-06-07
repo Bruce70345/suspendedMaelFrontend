@@ -39,30 +39,71 @@ function GoogleMap() {
 
         return users.map((user, index) => {
             // 取得用戶的實際位置資料
-            const userLat = parseFloat(user.latitude) || parseFloat(user.lnglat?.lat);
-            const userLng = parseFloat(user.longitude) || parseFloat(user.lnglat?.lng);
+            let userLat, userLng;
+
+            // 優先使用數值座標
+            if (typeof user.latitude === 'number' && typeof user.longitude === 'number') {
+                userLat = user.latitude;
+                userLng = user.longitude;
+            }
+            // 其次使用字串座標
+            else if (typeof user.latitude === 'string' && typeof user.longitude === 'string') {
+                userLat = parseFloat(user.latitude);
+                userLng = parseFloat(user.longitude);
+            }
+            // 再次使用 lnglat 物件
+            else if (user.lnglat) {
+                userLat = parseFloat(user.lnglat.lat);
+                userLng = parseFloat(user.lnglat.lng);
+            }
+            // 最後如果只有地址，使用台北市的預設座標範圍
+            else if (user.address) {
+                // 根據地址區域給予大概的座標
+                const address = user.address.toLowerCase();
+                if (address.includes('大安區')) {
+                    userLat = 25.0330 + (Math.random() - 0.5) * 0.01; // 大安區附近
+                    userLng = 121.5654 + (Math.random() - 0.5) * 0.01;
+                } else if (address.includes('信義區')) {
+                    userLat = 25.0320 + (Math.random() - 0.5) * 0.01; // 信義區附近
+                    userLng = 121.5598 + (Math.random() - 0.5) * 0.01;
+                } else if (address.includes('中山區')) {
+                    userLat = 25.0636 + (Math.random() - 0.5) * 0.01; // 中山區附近
+                    userLng = 121.5264 + (Math.random() - 0.5) * 0.01;
+                } else if (address.includes('大同區')) {
+                    userLat = 25.0633 + (Math.random() - 0.5) * 0.01; // 大同區附近
+                    userLng = 121.5130 + (Math.random() - 0.5) * 0.01;
+                } else if (address.includes('萬華區')) {
+                    userLat = 25.0340 + (Math.random() - 0.5) * 0.01; // 萬華區附近
+                    userLng = 121.4998 + (Math.random() - 0.5) * 0.01;
+                } else if (address.includes('中正區')) {
+                    userLat = 25.0320 + (Math.random() - 0.5) * 0.01; // 中正區附近
+                    userLng = 121.5198 + (Math.random() - 0.5) * 0.01;
+                } else {
+                    // 預設台北市中心
+                    userLat = 25.0330 + (Math.random() - 0.5) * 0.02;
+                    userLng = 121.5654 + (Math.random() - 0.5) * 0.02;
+                }
+                console.log(`GoogleMap - Generated coordinates for address "${user.address}":`, { userLat, userLng });
+            }
 
             const location = {
-                name: user.name || user.username || `用戶 ${index + 1}`,
-                key: user._id || user.name || user.username || `user-${index}`,
-                secret: user.secret || '無可用密碼',
-                userID: user.userId || user._id,
-                location: {
-                    lat: userLat || DEFAULT_CENTER.lat,
-                    lng: userLng || DEFAULT_CENTER.lng
-                },
-                hasValidLocation: !!(userLat && userLng) // 標記是否有有效位置
+                name: user.name || user.username || `User ${index + 1}`,
+                userId: user.userId || user._id,
+                lat: userLat,
+                lng: userLng,
+                address: user.address || 'No address provided',
+                originalUser: user
             };
 
-            console.log(`GoogleMap - Processing user ${index}:`, {
-                original: user,
-                processed: location,
-                hasValidLocation: location.hasValidLocation
-            });
+            // 驗證座標是否有效
+            if (isNaN(location.lat) || isNaN(location.lng)) {
+                console.warn(`GoogleMap - Invalid coordinates for user ${index}:`, location);
+                return null;
+            }
 
+            console.log(`GoogleMap - Processed location ${index}:`, location);
             return location;
-        }).filter(loc => loc.hasValidLocation); // 只保留有有效位置的用戶
-
+        }).filter(location => location !== null); // 過濾掉無效的位置
     }, [users]);
 
     console.log('GoogleMap - Final locations:', locations);

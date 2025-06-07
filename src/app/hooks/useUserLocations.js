@@ -41,21 +41,57 @@ const useUserLocations = () => {
                     throw new Error('Response data format error: expected array');
                 }
 
-                // 驗證每個用戶的資料結構
+                // 驗證每個用戶的資料結構 - 更寬鬆的驗證
                 const validUsers = data.filter((user, index) => {
-                    const isValid = user && (
-                        (typeof user.latitude === 'number' && typeof user.longitude === 'number') ||
-                        (user.lnglat && typeof user.lnglat.lat === 'number' && typeof user.lnglat.lng === 'number')
+                    // 檢查基本用戶資料
+                    if (!user || !user._id) {
+                        console.warn(`useUserLocations - Invalid user data at index ${index}: missing basic data`);
+                        return false;
+                    }
+
+                    // 檢查位置資料 - 接受多種格式
+                    const hasNumericCoords = (
+                        typeof user.latitude === 'number' && typeof user.longitude === 'number'
                     );
 
+                    const hasStringCoords = (
+                        (typeof user.latitude === 'string' && typeof user.longitude === 'string') &&
+                        (!isNaN(parseFloat(user.latitude)) && !isNaN(parseFloat(user.longitude)))
+                    );
+
+                    const hasLngLatObject = (
+                        user.lnglat &&
+                        (typeof user.lnglat.lat === 'number' || !isNaN(parseFloat(user.lnglat.lat))) &&
+                        (typeof user.lnglat.lng === 'number' || !isNaN(parseFloat(user.lnglat.lng)))
+                    );
+
+                    const hasAddress = (
+                        typeof user.address === 'string' && user.address.trim().length > 0
+                    );
+
+                    const isValid = hasNumericCoords || hasStringCoords || hasLngLatObject || hasAddress;
+
                     if (!isValid) {
-                        console.warn(`useUserLocations - Invalid user data at index ${index}:`, user);
+                        console.warn(`useUserLocations - Invalid user data at index ${index}:`, {
+                            id: user._id,
+                            name: user.name,
+                            hasNumericCoords,
+                            hasStringCoords,
+                            hasLngLatObject,
+                            hasAddress,
+                            latitude: user.latitude,
+                            longitude: user.longitude,
+                            lnglat: user.lnglat,
+                            address: user.address
+                        });
                     } else {
                         console.log(`useUserLocations - Valid user ${index}:`, {
                             id: user._id,
                             name: user.name || user.username,
                             latitude: user.latitude || user.lnglat?.lat,
-                            longitude: user.longitude || user.lnglat?.lng
+                            longitude: user.longitude || user.lnglat?.lng,
+                            address: user.address,
+                            locationType: hasNumericCoords ? 'numeric' : hasStringCoords ? 'string' : hasLngLatObject ? 'lnglat' : 'address'
                         });
                     }
 
