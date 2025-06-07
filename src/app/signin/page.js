@@ -18,8 +18,7 @@ import Theme from '@/app/lib/Theme';
 import Copyright from '@/app/lib/Copyright';
 import LogInOutButton from '@/app/lib/Maps/LogInOutButton';
 import useLoggedInStore from '@/stores/logInOut-store';
-
-
+import { buildApiUrl, API_ENDPOINTS } from '../../config/api';
 
 export default function SignIn() {
   const router = useRouter();
@@ -31,9 +30,8 @@ export default function SignIn() {
     const email = data.get('email');
     const password = data.get('password');
 
-
     try {
-      const response = await fetch('http://localhost:1000/api/sign/signin', {
+      const response = await fetch(buildApiUrl(API_ENDPOINTS.SIGNIN), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

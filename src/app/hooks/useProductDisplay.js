@@ -1,28 +1,32 @@
 // hooks/useProductDisplay.js
 import { useState, useEffect } from 'react';
+import { buildApiUrl, API_ENDPOINTS } from '../../config/api';
 
-export default function useProductDisplay() {
+const useProductDisplay = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        async function fetchData() {
+        const fetchProducts = async () => {
             try {
-                const res = await fetch('http://localhost:1000/api/products');
+                const res = await fetch(buildApiUrl(API_ENDPOINTS.PRODUCTS));
                 if (!res.ok) {
-                    throw new Error(`HTTP error! Status: ${res.status}`);
+                    throw new Error('Failed to fetch products');
                 }
                 const data = await res.json();
                 setProducts(data);
-            } catch (error) {
-                setError(error.message);
+            } catch (err) {
+                setError(err.message);
             } finally {
                 setLoading(false);
             }
-        }
-        fetchData();
+        };
+
+        fetchProducts();
     }, []);
 
     return { products, loading, error };
-}
+};
+
+export default useProductDisplay;

@@ -1,38 +1,31 @@
 import { useState, useEffect } from 'react';
+import { buildApiUrl, API_ENDPOINTS } from '../../config/api';
 
-export default function useUserLocations() {
-    const [locations, setLocations] = useState([]);
+const useUserLocations = () => {
+    const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        async function fetchData() {
+        const fetchUsers = async () => {
             try {
-                const res = await fetch('http://localhost:1000/api/users');
+                const res = await fetch(buildApiUrl(API_ENDPOINTS.USERS));
                 if (!res.ok) {
-                    throw new Error(`HTTP error! Status: ${res.status}`);
+                    throw new Error('Failed to fetch users');
                 }
                 const data = await res.json();
-                const filteredLocations = data
-                    .filter(user => user.lnglat)
-                    .map(user => ({
-                        key: user.name,
-                        location: {
-                            lat: parseFloat(user.lnglat.lat),
-                            lng: parseFloat(user.lnglat.lng),
-                        },
-                        userID: user.userId,
-                        secret: user.secret
-                    }));
-                setLocations(filteredLocations);
-            } catch (error) {
-                setError(error.message);
+                setUsers(data);
+            } catch (err) {
+                setError(err.message);
             } finally {
                 setLoading(false);
             }
-        }
-        fetchData();
+        };
+
+        fetchUsers();
     }, []);
 
-    return { locations, loading, error };
-}
+    return { users, loading, error };
+};
+
+export default useUserLocations;

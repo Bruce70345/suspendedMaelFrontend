@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { buildApiUrl, API_ENDPOINTS } from '../config/api';
 
 const useProductStore = create((set) => ({
     products: [],
@@ -7,7 +8,7 @@ const useProductStore = create((set) => ({
     fetchProducts: async (userId) => {
         set({ isLoading: true, error: null });
         try {
-            const response = await fetch(`http://localhost:1000/api/products/${userId}`);
+            const response = await fetch(buildApiUrl(`${API_ENDPOINTS.PRODUCTS}/${userId}`));
             const data = await response.json();
             set({ products: data, isLoading: false });
         } catch (error) {
@@ -17,7 +18,7 @@ const useProductStore = create((set) => ({
     },
     addProduct: async (userId, product) => {
         try {
-            const response = await fetch(`http://localhost:1000/api/products/${userId}`, {
+            const response = await fetch(buildApiUrl(`${API_ENDPOINTS.PRODUCTS}/${userId}`), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -34,7 +35,7 @@ const useProductStore = create((set) => ({
     },
     updateProduct: async (userId, productId, updatedFields) => {
         try {
-            const response = await fetch(`http://localhost:1000/api/products/${userId}/${productId}`, {
+            const response = await fetch(buildApiUrl(`${API_ENDPOINTS.PRODUCTS}/${userId}/${productId}`), {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -53,7 +54,7 @@ const useProductStore = create((set) => ({
     },
     deleteProduct: async (userId, productId) => {
         try {
-            await fetch(`http://localhost:1000/api/products/${userId}/${productId}`, {
+            await fetch(buildApiUrl(`${API_ENDPOINTS.PRODUCTS}/${userId}/${productId}`), {
                 method: 'DELETE',
             });
             set((state) => ({

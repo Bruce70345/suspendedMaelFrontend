@@ -14,8 +14,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import Theme from '@/app/lib/Theme';
 import Copyright from '@/app/lib/Copyright';
 import { redirect } from 'next/navigation'
-
-
+import { buildApiUrl, API_ENDPOINTS } from '../../config/api';
 
 export default function SignUp() {
     const handleSubmit = async (event) => {
@@ -31,7 +30,7 @@ export default function SignUp() {
 
         try {
             console.log(userData)
-            const response = await fetch('http://localhost:1000/api/users', {
+            const response = await fetch(buildApiUrl(API_ENDPOINTS.USERS), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
