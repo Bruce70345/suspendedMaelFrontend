@@ -29,7 +29,7 @@ const Info = () => {
       setUserId(user.userId);
       fetchProducts(user.userId);
     } else { console.log("noooo") }
-  }, []);
+  }, [fetchProducts]);
 
   const handleAddProduct = () => {
     const newProduct = {
@@ -101,7 +101,7 @@ const Info = () => {
                 />
               </Box>
               <Box>
-              <Typography variant='p'>Daily supply quantity: </Typography>
+                <Typography variant='p'>Daily supply quantity: </Typography>
                 <input
                   type="number"
                   placeholder="Daily supply quantity"
@@ -110,7 +110,7 @@ const Info = () => {
                 />
               </Box>
               <Box>
-              <Typography variant='p'>Campaign expiration date: </Typography>
+                <Typography variant='p'>Campaign expiration date: </Typography>
                 <input
                   type="date"
                   placeholder="Campaign expiration date"
@@ -118,7 +118,7 @@ const Info = () => {
                   onChange={(e) => setNewProductExpiration(e.target.value)}
                 />
               </Box>
-              <Button sx={{ width:"50%", margin:"auto", mt:1 }} size='small' variant="contained" onClick={handleAddProduct} disabled={!userId}>新增</Button>
+              <Button sx={{ width: "50%", margin: "auto", mt: 1 }} size='small' variant="contained" onClick={handleAddProduct} disabled={!userId}>新增</Button>
             </Box>
           </Item>
           {products.map((product) => (

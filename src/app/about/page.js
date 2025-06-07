@@ -7,7 +7,7 @@ import Theme from '../lib/Theme';
 export default function about() {
   return (
     <ThemeProvider theme={Theme}>
-      <Box sx={{ margin:"auto", my: 4, width:"75%" }}>
+      <Box sx={{ margin: "auto", my: 4, width: "75%" }}>
         <Typography variant="h3" component="h1" gutterBottom>
           About us
         </Typography>
@@ -20,7 +20,7 @@ export default function about() {
                   Origin
                 </Typography>
                 <Typography variant="body1" paragraph>
-                  Our story began with a heartbreaking news: a poor person stole fruit because they didn't have money to eat. This news touched our hearts and made us realize that many people were struggling to find food for their next meal. However, we also discovered that there are many kind-hearted restaurants willing to provide free meals. So, we decided to create a platform to integrate these resources, so that those in need can easily obtain these free meals.
+                  Our story began with a heartbreaking news: a poor person stole fruit because they didn&apos;t have money to eat. This news touched our hearts and made us realize that many people were struggling to find food for their next meal. However, we also discovered that there are many kind-hearted restaurants willing to provide free meals. So, we decided to create a platform to integrate these resources, so that those in need can easily obtain these free meals.
                 </Typography>
               </CardContent>
             </Card>
