@@ -30,14 +30,7 @@ function GoogleMap() {
     console.log('GoogleMap - loading:', loading);
     console.log('GoogleMap - error:', error);
 
-    // 檢查 Google Maps API 金鑰
-    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API;
-    if (!apiKey) {
-        console.error('GoogleMap - Missing Google Maps API key');
-        return <p>Error: Missing Google Maps API key</p>;
-    }
-
-    // 將 users 資料轉換為地圖標記格式
+    // 將 users 資料轉換為地圖標記格式 - 必須在所有條件檢查之前
     const locations = React.useMemo(() => {
         if (!users || !Array.isArray(users)) {
             console.log('GoogleMap - users is not valid array:', users);
@@ -73,6 +66,13 @@ function GoogleMap() {
     }, [users]);
 
     console.log('GoogleMap - Final locations:', locations);
+
+    // 檢查 Google Maps API 金鑰
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API;
+    if (!apiKey) {
+        console.error('GoogleMap - Missing Google Maps API key');
+        return <p>Error: Missing Google Maps API key</p>;
+    }
 
     // 載入狀態
     if (loading) {
