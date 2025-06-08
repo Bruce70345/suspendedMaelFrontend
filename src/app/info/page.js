@@ -390,12 +390,13 @@ const Info = () => {
             ref={titleRef}
             className="text-center mb-12"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-redwood-600 mb-4">
-              Product Management
+            <h1 className="text-4xl md:text-5xl font-bold text-redwood-700 mb-4">
+              Restaurant Information
             </h1>
             {userInfo && (
-              <p className="text-mountbatten_pink-600 mb-4">
-                Welcome back, {userInfo.name || userInfo.email}!
+              <p className="text-lg text-redwood-600 mb-8">
+                Welcome back, <span className="font-semibold text-peach-600">{userInfo.name || 'Restaurant Owner'}</span>!
+                Manage your meal offerings and help those in need.
               </p>
             )}
             <div className="w-24 h-1 bg-peach-500 rounded-full mx-auto"></div>
@@ -412,48 +413,48 @@ const Info = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                 <div>
-                  <label htmlFor="productName" className="block text-sm font-medium text-mountbatten_pink-700 mb-2">
-                    Supply product name
+                  <label htmlFor="name" className="block text-sm font-medium text-redwood-700 mb-2">
+                    Meal Name
                   </label>
                   <input
-                    id="productName"
+                    id="name"
                     type="text"
-                    placeholder="Enter product name"
-                    value={newProductName}
-                    onChange={(e) => setNewProductName(e.target.value)}
-                    onFocus={handleInputFocus}
-                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-mountbatten_pink-600 placeholder:text-mountbatten_pink-600 focus:outline-none focus:ring-2 focus:ring-peach-400 focus:border-transparent transition-all duration-300"
+                    name="name"
+                    required
+                    disabled={isLoading}
+                    placeholder="Please enter meal name"
+                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-redwood-600 placeholder:text-redwood-600 focus:outline-none focus:ring-2 focus:ring-peach-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="productQuantity" className="block text-sm font-medium text-mountbatten_pink-700 mb-2">
-                    Daily supply quantity
+                  <label htmlFor="quantity" className="block text-sm font-medium text-redwood-700 mb-2">
+                    Quantity
                   </label>
                   <input
-                    id="productQuantity"
+                    id="quantity"
                     type="number"
+                    name="quantity"
                     min="1"
-                    placeholder="Enter quantity"
-                    value={newProductQuantity}
-                    onChange={(e) => setNewProductQuantity(e.target.value)}
-                    onFocus={handleInputFocus}
-                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-mountbatten_pink-600 placeholder:text-mountbatten_pink-600 focus:outline-none focus:ring-2 focus:ring-peach-400 focus:border-transparent transition-all duration-300"
+                    required
+                    disabled={isLoading}
+                    placeholder="Please enter quantity"
+                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-redwood-600 placeholder:text-redwood-600 focus:outline-none focus:ring-2 focus:ring-peach-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="productExpiration" className="block text-sm font-medium text-mountbatten_pink-700 mb-2">
-                    Campaign expiration
+                  <label htmlFor="expiry_date" className="block text-sm font-medium text-redwood-700 mb-2">
+                    Expiry Date
                   </label>
                   <input
-                    id="productExpiration"
+                    id="expiry_date"
                     type="date"
-                    value={newProductExpiration}
+                    name="expiry_date"
                     min={new Date().toISOString().split('T')[0]}
-                    onChange={(e) => setNewProductExpiration(e.target.value)}
-                    onFocus={handleInputFocus}
-                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-mountbatten_pink-600 placeholder:text-mountbatten_pink-600 focus:outline-none focus:ring-2 focus:ring-peach-400 focus:border-transparent transition-all duration-300"
+                    required
+                    disabled={isLoading}
+                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-redwood-600 focus:outline-none focus:ring-2 focus:ring-peach-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
               </div>

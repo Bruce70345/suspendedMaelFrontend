@@ -70,34 +70,34 @@ const Dialog = ({ isOpen, onClose, type = 'info', title, message, confirmText = 
             case 'success':
                 return {
                     icon: '✅',
-                    iconBg: 'bg-green-100',
-                    iconColor: 'text-green-600',
-                    buttonBg: 'bg-green-500 hover:bg-green-600',
-                    borderColor: 'border-green-200'
+                    iconBg: 'bg-peach-100',
+                    iconColor: 'text-peach-600',
+                    buttonBg: 'bg-peach-500 hover:bg-peach-600',
+                    borderColor: 'border-peach-200'
                 };
             case 'error':
                 return {
                     icon: '❌',
-                    iconBg: 'bg-red-100',
-                    iconColor: 'text-red-600',
-                    buttonBg: 'bg-red-500 hover:bg-red-600',
-                    borderColor: 'border-red-200'
+                    iconBg: 'bg-light_coral-100',
+                    iconColor: 'text-light_coral-600',
+                    buttonBg: 'bg-light_coral-500 hover:bg-light_coral-600',
+                    borderColor: 'border-light_coral-200'
                 };
             case 'warning':
                 return {
                     icon: '⚠️',
-                    iconBg: 'bg-yellow-100',
-                    iconColor: 'text-yellow-600',
-                    buttonBg: 'bg-yellow-500 hover:bg-yellow-600',
-                    borderColor: 'border-yellow-200'
+                    iconBg: 'bg-coral_pink-100',
+                    iconColor: 'text-coral_pink-600',
+                    buttonBg: 'bg-coral_pink-500 hover:bg-coral_pink-600',
+                    borderColor: 'border-coral_pink-200'
                 };
             default:
                 return {
                     icon: 'ℹ️',
-                    iconBg: 'bg-blue-100',
-                    iconColor: 'text-blue-600',
-                    buttonBg: 'bg-blue-500 hover:bg-blue-600',
-                    borderColor: 'border-blue-200'
+                    iconBg: 'bg-desert_sand-100',
+                    iconColor: 'text-desert_sand-600',
+                    buttonBg: 'bg-desert_sand-500 hover:bg-desert_sand-600',
+                    borderColor: 'border-desert_sand-200'
                 };
         }
     };

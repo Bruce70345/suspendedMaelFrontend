@@ -7,7 +7,7 @@ const Footer = () => {
         <footer className="bg-transparent backdrop-blur-md border-desert_sand-200/40 mt-16">
             <div className="max-w-7xl mx-auto px-6 py-8">
                 <div className="text-center">
-                    <p className="text-sm text-mountbatten_pink-600">
+                    <p className="text-sm text-redwood-600">
                         © {currentYear} Suspended Meal Finder. All rights reserved.
                     </p>
                 </div>

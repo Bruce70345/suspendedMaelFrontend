@@ -49,7 +49,7 @@ export default function About() {
           ref={titleRef}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-redwood-600 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-redwood-700 mb-4">
             About us
           </h1>
           <div className="w-24 h-1 bg-peach-500 rounded-full mx-auto"></div>
@@ -66,7 +66,7 @@ export default function About() {
           >
             <div className="relative">
               <h2 className="text-2xl font-bold text-peach-600 mb-6">Origin</h2>
-              <p className="text-mountbatten_pink-700 leading-relaxed">
+              <p className="text-redwood-600 leading-relaxed">
                 Our story began with a heartbreaking news: a poor person stole fruit because they didn&apos;t have money to eat. This news touched our hearts and made us realize that many people were struggling to find food for their next meal. However, we also discovered that there are many kind-hearted restaurants willing to provide free meals. So, we decided to create a platform to integrate these resources, so that those in need can easily obtain these suspended meals.
               </p>
 
@@ -98,28 +98,28 @@ export default function About() {
         >
           <div className="relative">
             <h2 className="text-2xl font-bold text-peach-600 mb-6">Web features</h2>
-            <p className="text-mountbatten_pink-700 leading-relaxed mb-6">
+            <p className="text-redwood-600 leading-relaxed mb-6">
               Our platform provides the following features:
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-peach-50/60 rounded-4xl p-6 border border-peach-200/40">
-                <div className="text-lg font-semibold text-redwood-600 mb-3">1. View restaurant supply situation</div>
-                <p className="text-mountbatten_pink-600 text-sm leading-relaxed">
+                <div className="text-lg font-semibold text-redwood-700 mb-3">1. View restaurant supply situation</div>
+                <p className="text-redwood-600 text-sm leading-relaxed">
                   Users can browse and search for nearby restaurants providing suspended meals, and understand the current supply situation of each restaurant.
                 </p>
               </div>
 
               <div className="bg-desert_sand-50/60 rounded-4xl p-6 border border-desert_sand-200/40">
-                <div className="text-lg font-semibold text-redwood-600 mb-3">2. Business information editing</div>
-                <p className="text-mountbatten_pink-600 text-sm leading-relaxed">
+                <div className="text-lg font-semibold text-redwood-700 mb-3">2. Business information editing</div>
+                <p className="text-redwood-600 text-sm leading-relaxed">
                   Registered businesses can edit and update meal information on the information page to ensure that users receive the latest supply information.
                 </p>
               </div>
 
               <div className="bg-old_rose-50/60 rounded-4xl p-6 border border-old_rose-200/40">
-                <div className="text-lg font-semibold text-redwood-600 mb-3">3. Resource integration</div>
-                <p className="text-mountbatten_pink-600 text-sm leading-relaxed">
+                <div className="text-lg font-semibold text-redwood-700 mb-3">3. Resource integration</div>
+                <p className="text-redwood-600 text-sm leading-relaxed">
                   Our platform will continue to collect and integrate more free resources to ensure that those in need can receive help.
                 </p>
               </div>

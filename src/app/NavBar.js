@@ -114,7 +114,7 @@ function NavBar() {
     };
 
     return (
-        <div className="fixed top-0 left-0 right-0 z-50 px-4 lg:px-6 pt-4">
+        <div className="fixed top-0 left-0 right-0 z-50 px-6 pt-4">
             {/* Capsule NavBar */}
             <nav
                 ref={navRef}

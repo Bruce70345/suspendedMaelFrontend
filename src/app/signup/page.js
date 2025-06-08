@@ -292,7 +292,7 @@ export default function SignUp() {
                         ref={titleRef}
                         className="text-center mb-8"
                     >
-                        <h1 className="text-3xl font-bold text-redwood-600 mb-2">
+                        <h1 className="text-3xl font-bold text-redwood-700 mb-2">
                             Sign up as a Giver
                         </h1>
                         <div className="w-16 h-1 bg-peach-500 rounded-full mx-auto"></div>
@@ -307,7 +307,7 @@ export default function SignUp() {
 
                             {/* Store Name Input */}
                             <div>
-                                <label htmlFor="name" className="block text-sm font-medium text-mountbatten_pink-700 mb-2">
+                                <label htmlFor="name" className="block text-sm font-medium text-redwood-700 mb-2">
                                     Store Name
                                 </label>
                                 <input
@@ -321,13 +321,13 @@ export default function SignUp() {
                                     disabled={isLoading}
                                     placeholder="Please enter the store name"
                                     onFocus={handleInputFocus}
-                                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-mountbatten_pink-600 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-peach-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-redwood-600 placeholder:text-redwood-600 focus:outline-none focus:ring-2 focus:ring-peach-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             </div>
 
                             {/* Email Input */}
                             <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-mountbatten_pink-700 mb-2">
+                                <label htmlFor="email" className="block text-sm font-medium text-redwood-700 mb-2">
                                     Email
                                 </label>
                                 <input
@@ -340,13 +340,13 @@ export default function SignUp() {
                                     disabled={isLoading}
                                     placeholder="Please enter your email"
                                     onFocus={handleInputFocus}
-                                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-mountbatten_pink-600 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-peach-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-redwood-600 placeholder:text-redwood-600 focus:outline-none focus:ring-2 focus:ring-peach-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             </div>
 
                             {/* Password Input */}
                             <div>
-                                <label htmlFor="password" className="block text-sm font-medium text-mountbatten_pink-700 mb-2">
+                                <label htmlFor="password" className="block text-sm font-medium text-redwood-700 mb-2">
                                     Password
                                 </label>
                                 <input
@@ -359,13 +359,13 @@ export default function SignUp() {
                                     disabled={isLoading}
                                     placeholder="Please enter the password (at least 6 characters)"
                                     onFocus={handleInputFocus}
-                                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-mountbatten_pink-600 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-peach-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-redwood-600 placeholder:text-redwood-600 focus:outline-none focus:ring-2 focus:ring-peach-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             </div>
 
                             {/* Address Input */}
                             <div>
-                                <label htmlFor="address" className="block text-sm font-medium text-mountbatten_pink-700 mb-2">
+                                <label htmlFor="address" className="block text-sm font-medium text-redwood-700 mb-2">
                                     Store Address
                                 </label>
                                 <input
@@ -378,13 +378,13 @@ export default function SignUp() {
                                     disabled={isLoading}
                                     placeholder="Please enter the complete store address"
                                     onFocus={handleInputFocus}
-                                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-mountbatten_pink-600 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-peach-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-redwood-600 placeholder:text-redwood-600 focus:outline-none focus:ring-2 focus:ring-peach-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             </div>
 
                             {/* Secret Code Input */}
                             <div>
-                                <label htmlFor="secret" className="block text-sm font-medium text-mountbatten_pink-700 mb-2">
+                                <label htmlFor="secret" className="block text-sm font-medium text-redwood-700 mb-2">
                                     Secret Code for Pickup
                                 </label>
                                 <input
@@ -395,7 +395,7 @@ export default function SignUp() {
                                     disabled={isLoading}
                                     placeholder="Set pickup password (optional)"
                                     onFocus={handleInputFocus}
-                                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-mountbatten_pink-600 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-peach-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="w-full px-4 py-3 bg-white/80 border border-peach-200/60 rounded-capsule text-redwood-600 placeholder:text-redwood-600 focus:outline-none focus:ring-2 focus:ring-peach-500 focus:border-transparent transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                                 />
                             </div>
 
@@ -421,7 +421,7 @@ export default function SignUp() {
                             <div className="text-center pt-4">
                                 <Link
                                     href="/signin"
-                                    className="text-sm text-mountbatten_pink-600 hover:text-peach-600 transition-colors duration-300 cursor-pointer"
+                                    className="text-sm text-redwood-600 hover:text-peach-600 transition-colors duration-300 cursor-pointer"
                                 >
                                     Already have an account? Please sign in
                                 </Link>

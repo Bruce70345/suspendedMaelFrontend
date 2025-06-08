@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { animate } from 'animejs';
 import useLoggedInStore from '@/stores/logInOut-store';
 import Dialog from '../Dialog';
 
 const LogInOutButton = () => {
+    const router = useRouter();
     // const [isLoggedIn, setIsLoggedIn] = useState(false);
     const { isLoggedIn, logIn, logOut } = useLoggedInStore();
     const [dialog, setDialog] = useState({
@@ -45,7 +47,7 @@ const LogInOutButton = () => {
                 // 清除本地存儲中的用戶信息
                 localStorage.removeItem('user');
                 logOut();
-                showDialog('success', 'Logout successful', 'You have successfully logged out');
+                router.push('/');
             }
         );
     }
@@ -66,7 +68,7 @@ const LogInOutButton = () => {
                     <>
                         <Link
                             href="/info"
-                            className="px-4 py-2 text-sm font-medium text-mountbatten_pink-700 hover:text-redwood-600 hover:bg-peach-50/40 rounded-capsule transition-all duration-300 cursor-pointer"
+                            className="px-4 py-2 text-sm font-medium text-redwood-600 hover:text-redwood-700 hover:bg-peach-50/40 rounded-capsule transition-all duration-300 cursor-pointer"
                             onClick={handleButtonClick}
                         >
                             My Info
@@ -85,7 +87,7 @@ const LogInOutButton = () => {
                     <>
                         <Link
                             href="/signin"
-                            className="px-4 py-2 text-sm font-medium text-mountbatten_pink-700 hover:text-redwood-600 hover:bg-peach-50/40 rounded-capsule transition-all duration-300 cursor-pointer"
+                            className="px-4 py-2 text-sm font-medium text-redwood-600 hover:text-redwood-700 hover:bg-peach-50/40 rounded-capsule transition-all duration-300 cursor-pointer"
                             onClick={handleButtonClick}
                         >
                             Login
