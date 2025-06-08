@@ -174,7 +174,7 @@ module.exports = {
           melon: '#FFB1A5',
           rose: '#CA848A',
           warm: '#FB9A84',
-        }
+        },
       },
       boxShadow: {
         'soft': '0 2px 12px rgba(254, 190, 152, 0.08)',

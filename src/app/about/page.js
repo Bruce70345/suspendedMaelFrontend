@@ -1,69 +1,134 @@
 'use client'
 import React from 'react';
-import { Typography, Box, Container, Grid, Card, CardContent, AppBar, Toolbar, IconButton } from '@mui/material';
-import { ThemeProvider } from 'styled-components';
-import Theme from '../lib/Theme';
+import { animate } from 'animejs';
 
-export default function about() {
+export default function About() {
+  const originCardRef = React.useRef(null);
+  const goalCardRef = React.useRef(null);
+  const featuresCardRef = React.useRef(null);
+  const titleRef = React.useRef(null);
+
+  React.useEffect(() => {
+    // 標題入場動畫
+    if (titleRef.current) {
+      animate(titleRef.current, {
+        translateY: [30, 0],
+        opacity: [0, 1],
+        duration: 800,
+        ease: 'outQuart',
+        delay: 200
+      });
+    }
+
+    // 卡片依序入場動畫
+    const cards = [originCardRef.current, goalCardRef.current, featuresCardRef.current];
+    animate(cards, {
+      translateY: [50, 0],
+      opacity: [0, 1],
+      duration: 800,
+      ease: 'outQuart',
+      delay: (el, i) => 400 + (i * 200)
+    });
+  }, []);
+
+  // 卡片點擊動畫
+  const handleCardClick = (e) => {
+    animate(e.currentTarget, {
+      scale: [1, 0.98, 1],
+      duration: 200,
+      ease: 'outQuart'
+    });
+  };
+
   return (
-    <ThemeProvider theme={Theme}>
-      <Box sx={{ margin: "auto", my: 4, width: "75%" }}>
-        <Typography variant="h3" component="h1" gutterBottom>
-          About us
-        </Typography>
+    <div className="min-h-screen bg-gradient-to-br from-peach-50 via-desert_sand-50 to-old_rose-50 pt-32 p-6">
+      <div className="max-w-7xl mx-auto">
 
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={6}>
-            <Card sx={{ height: '100%' }}>
-              <CardContent>
-                <Typography variant="h5" component="h2" gutterBottom>
-                  Origin
-                </Typography>
-                <Typography variant="body1" paragraph>
-                  Our story began with a heartbreaking news: a poor person stole fruit because they didn&apos;t have money to eat. This news touched our hearts and made us realize that many people were struggling to find food for their next meal. However, we also discovered that there are many kind-hearted restaurants willing to provide free meals. So, we decided to create a platform to integrate these resources, so that those in need can easily obtain these free meals.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+        {/* Page Title */}
+        <div
+          ref={titleRef}
+          className="text-center mb-12"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold text-redwood-600 mb-4">
+            About us
+          </h1>
+          <div className="w-24 h-1 bg-peach-500 rounded-full mx-auto"></div>
+        </div>
 
-          <Grid item xs={12} md={6}>
-            <Card sx={{ height: '100%' }}>
-              <CardContent>
-                <Typography variant="h5" component="h2" gutterBottom>
-                  Our goal
-                </Typography>
-                <Typography variant="body1" paragraph>
-                  Our goal is to connect individuals in need with restaurants willing to provide help through the free meal map platform. We hope that through this platform, not only can we solve the problem of hunger, but also promote community love and help.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
 
-          <Grid item xs={12}>
-            <Card sx={{ width: '100%' }}>
-              <CardContent>
-                <Typography variant="h5" component="h2" gutterBottom>
-                  Web features
-                </Typography>
-                <Typography variant="body1" paragraph>
-                  Our platform provides the following features:
-                </Typography>
-                <Typography variant="body1" paragraph>
-                  1. View restaurant supply situation: users can browse and search for nearby restaurants providing free meals, and understand the current supply situation of each restaurant.
-                </Typography>
-                <Typography variant="body1" paragraph>
-                  2. Business information editing: registered businesses can edit and update meal information on the information page to ensure that users receive the latest supply information.
-                </Typography>
-                <Typography variant="body1" paragraph>
-                  3. Resource integration: our platform will continue to collect and integrate more free resources to ensure that those in need can receive help.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      </Box>
-    </ThemeProvider>
+          {/* Origin Card */}
+          <div
+            ref={originCardRef}
+            className="bg-white/95 backdrop-blur-xl rounded-6xl p-8 shadow-bento border border-desert_sand-200/40 hover:shadow-bento-hover transition-all duration-500 cursor-pointer"
+            onClick={handleCardClick}
+          >
+            <div className="relative">
+              <h2 className="text-2xl font-bold text-peach-600 mb-6">Origin</h2>
+              <p className="text-mountbatten_pink-700 leading-relaxed">
+                Our story began with a heartbreaking news: a poor person stole fruit because they didn&apos;t have money to eat. This news touched our hearts and made us realize that many people were struggling to find food for their next meal. However, we also discovered that there are many kind-hearted restaurants willing to provide free meals. So, we decided to create a platform to integrate these resources, so that those in need can easily obtain these free meals.
+              </p>
 
+            </div>
+          </div>
 
+          {/* Goal Card */}
+          <div
+            ref={goalCardRef}
+            className="bg-light_coral-500 rounded-6xl p-8 shadow-bento text-white relative overflow-hidden cursor-pointer"
+            onClick={handleCardClick}
+          >
+            <div className="absolute inset-0 bg-white/10 rounded-6xl"></div>
+            <div className="relative z-10">
+              <h2 className="text-2xl font-bold mb-6">Our goal</h2>
+              <p className="text-light_coral-100 leading-relaxed">
+                Our goal is to connect individuals in need with restaurants willing to provide help through the free meal map platform. We hope that through this platform, not only can we solve the problem of hunger, but also promote community love and help.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Features Card - Full Width */}
+        <div
+          ref={featuresCardRef}
+          className="bg-white/95 backdrop-blur-xl rounded-6xl p-8 shadow-bento border border-desert_sand-200/40 hover:shadow-bento-hover transition-all duration-500 cursor-pointer"
+          onClick={handleCardClick}
+        >
+          <div className="relative">
+            <h2 className="text-2xl font-bold text-peach-600 mb-6">Web features</h2>
+            <p className="text-mountbatten_pink-700 leading-relaxed mb-6">
+              Our platform provides the following features:
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-peach-50/60 rounded-4xl p-6 border border-peach-200/40">
+                <div className="text-lg font-semibold text-redwood-600 mb-3">1. View restaurant supply situation</div>
+                <p className="text-mountbatten_pink-600 text-sm leading-relaxed">
+                  Users can browse and search for nearby restaurants providing free meals, and understand the current supply situation of each restaurant.
+                </p>
+              </div>
+
+              <div className="bg-desert_sand-50/60 rounded-4xl p-6 border border-desert_sand-200/40">
+                <div className="text-lg font-semibold text-redwood-600 mb-3">2. Business information editing</div>
+                <p className="text-mountbatten_pink-600 text-sm leading-relaxed">
+                  Registered businesses can edit and update meal information on the information page to ensure that users receive the latest supply information.
+                </p>
+              </div>
+
+              <div className="bg-old_rose-50/60 rounded-4xl p-6 border border-old_rose-200/40">
+                <div className="text-lg font-semibold text-redwood-600 mb-3">3. Resource integration</div>
+                <p className="text-mountbatten_pink-600 text-sm leading-relaxed">
+                  Our platform will continue to collect and integrate more free resources to ensure that those in need can receive help.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
   );
 }

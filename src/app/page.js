@@ -11,7 +11,6 @@ export default function Home() {
   const statsNumberRef = React.useRef(null);
   const progressBarRef = React.useRef(null);
   const liveIndicatorRef = React.useRef(null);
-  const decorativeElementRef = React.useRef(null);
 
   React.useEffect(() => {
     // 卡片入場動畫
@@ -57,18 +56,6 @@ export default function Home() {
       });
     }
 
-    // 裝飾元素浮動動畫 - 更明顯的循環動畫
-    if (decorativeElementRef.current) {
-      animate(decorativeElementRef.current, {
-        translateY: [0, -20, 0],
-        translateX: [0, 10, 0],
-        rotate: [0, 15, 0],
-        scale: [1, 1.2, 1],
-        duration: 4000,
-        ease: 'inOutSine',
-        loop: true
-      });
-    }
   }, []);
 
   // 卡片點擊動畫 - 適合手機觸控
@@ -132,11 +119,6 @@ export default function Home() {
                 <h1 className="text-2xl font-bold mb-3">Free Meal Finder</h1>
                 <p className="text-peach-100 text-sm leading-relaxed">Connecting communities through compassion</p>
               </div>
-              {/* Decorative element with floating animation */}
-              <div
-                ref={decorativeElementRef}
-                className="absolute -bottom-4 -right-4 w-24 h-24 bg-white/20 rounded-full blur-xl"
-              ></div>
             </div>
 
             {/* Stats Card */}
