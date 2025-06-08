@@ -77,7 +77,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-peach-50 via-desert_sand-50 to-old_rose-50 pt-32 p-6">
+    <div className="page-container min-h-screen bg-gradient-to-br from-peach-50 via-desert_sand-50 to-old_rose-50 pt-32 p-6">
       <div className="max-w-7xl mx-auto">
 
         {/* Bento Grid Layout */}
@@ -86,7 +86,7 @@ export default function Home() {
           {/* Main Map Card */}
           <div
             ref={mapCardRef}
-            className="md:col-span-2 lg:col-span-3 bg-white/95 backdrop-blur-xl rounded-6xl p-8 shadow-bento border border-desert_sand-200/40 hover:shadow-bento-hover transition-all duration-500 group cursor-pointer"
+            className="md:col-span-2 lg:col-span-3 bento-card p-8 group cursor-pointer"
             onClick={handleCardClick}
           >
             <div className="h-full rounded-5xl overflow-hidden bg-peach-50/50 relative">
@@ -116,7 +116,7 @@ export default function Home() {
               {/* Background pattern */}
               <div className="absolute inset-0 bg-white/10 rounded-6xl"></div>
               <div className="relative z-10">
-                <h1 className="text-2xl font-bold mb-3">Free Meal Finder</h1>
+                <h1 className="text-2xl font-bold mb-3">Suspended Meal Finder</h1>
                 <p className="text-peach-100 text-sm leading-relaxed">Connecting communities through compassion</p>
               </div>
             </div>
@@ -124,7 +124,7 @@ export default function Home() {
             {/* Stats Card */}
             <div
               ref={statsCardRef}
-              className="bg-white/95 backdrop-blur-xl rounded-6xl p-8 shadow-bento border border-desert_sand-200/40 hover:shadow-bento-hover transition-all duration-300 cursor-pointer"
+              className="bento-card p-8 cursor-pointer"
               onClick={handleCardClick}
             >
               <div className="text-center">

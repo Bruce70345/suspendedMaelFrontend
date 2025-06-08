@@ -6,7 +6,7 @@ function Copyright(props) {
         <Typography variant="body2" color="text.secondary" align="center" {...props}>
             {'Copyright © '}
             <Link color="inherit" href="/">
-                Free Meal Maps
+                Suspended Meal Maps
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}

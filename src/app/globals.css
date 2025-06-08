@@ -40,6 +40,9 @@
 
   --background: #fefcfb;
   --foreground: #856879;
+
+  /* 預設背景漸變，防止閃爍 */
+  --page-gradient: linear-gradient(135deg, #fef7f0 0%, #f5ebe0 50%, #f4e6e7 100%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -84,12 +87,45 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  /* 防止字體載入時的閃爍 */
+  font-display: swap;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  /* 確保初始背景立即可見 */
+  min-height: 100vh;
+  /* 防止內容跳動 */
+  line-height: 1.6;
+}
+
+/* 防止無樣式內容閃爍 (FOUC) */
+.page-container {
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* 確保關鍵樣式立即可用 */
+.bento-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 2rem;
+  border: 1px solid rgba(220, 188, 158, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.bento-card:hover {
+  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
 }
 
 a {
@@ -107,4 +143,29 @@ a {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* 預載入關鍵字體 */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Inter Regular'), local('Inter-Regular');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Inter SemiBold'), local('Inter-SemiBold');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Inter Bold'), local('Inter-Bold');
 }

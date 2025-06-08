@@ -152,7 +152,7 @@ function NavBar() {
                                 </div>
                                 <div className="hidden sm:block">
                                     <span className="text-xl font-bold text-redwood-600">
-                                        Free Meal Finder
+                                        Suspended Meal Finder
                                     </span>
                                     <div className="text-xs text-mountbatten_pink-600 font-medium tracking-wide">
                                         Community Support

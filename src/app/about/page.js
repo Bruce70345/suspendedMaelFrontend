@@ -41,7 +41,7 @@ export default function About() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-peach-50 via-desert_sand-50 to-old_rose-50 pt-32 p-6">
+    <div className="page-container min-h-screen bg-gradient-to-br from-peach-50 via-desert_sand-50 to-old_rose-50 pt-32 p-6 overflow-y-hidden">
       <div className="max-w-7xl mx-auto">
 
         {/* Page Title */}
@@ -61,13 +61,13 @@ export default function About() {
           {/* Origin Card */}
           <div
             ref={originCardRef}
-            className="bg-white/95 backdrop-blur-xl rounded-6xl p-8 shadow-bento border border-desert_sand-200/40 hover:shadow-bento-hover transition-all duration-500 cursor-pointer"
+            className="bento-card p-8 cursor-pointer"
             onClick={handleCardClick}
           >
             <div className="relative">
               <h2 className="text-2xl font-bold text-peach-600 mb-6">Origin</h2>
               <p className="text-mountbatten_pink-700 leading-relaxed">
-                Our story began with a heartbreaking news: a poor person stole fruit because they didn&apos;t have money to eat. This news touched our hearts and made us realize that many people were struggling to find food for their next meal. However, we also discovered that there are many kind-hearted restaurants willing to provide free meals. So, we decided to create a platform to integrate these resources, so that those in need can easily obtain these free meals.
+                Our story began with a heartbreaking news: a poor person stole fruit because they didn&apos;t have money to eat. This news touched our hearts and made us realize that many people were struggling to find food for their next meal. However, we also discovered that there are many kind-hearted restaurants willing to provide free meals. So, we decided to create a platform to integrate these resources, so that those in need can easily obtain these suspended meals.
               </p>
 
             </div>
@@ -83,7 +83,7 @@ export default function About() {
             <div className="relative z-10">
               <h2 className="text-2xl font-bold mb-6">Our goal</h2>
               <p className="text-light_coral-100 leading-relaxed">
-                Our goal is to connect individuals in need with restaurants willing to provide help through the free meal map platform. We hope that through this platform, not only can we solve the problem of hunger, but also promote community love and help.
+                Our goal is to connect individuals in need with restaurants willing to provide help through the suspended meal map platform. We hope that through this platform, not only can we solve the problem of hunger, but also promote community love and help.
               </p>
             </div>
           </div>
@@ -93,7 +93,7 @@ export default function About() {
         {/* Features Card - Full Width */}
         <div
           ref={featuresCardRef}
-          className="bg-white/95 backdrop-blur-xl rounded-6xl p-8 shadow-bento border border-desert_sand-200/40 hover:shadow-bento-hover transition-all duration-500 cursor-pointer"
+          className="bento-card p-8 cursor-pointer"
           onClick={handleCardClick}
         >
           <div className="relative">
@@ -106,7 +106,7 @@ export default function About() {
               <div className="bg-peach-50/60 rounded-4xl p-6 border border-peach-200/40">
                 <div className="text-lg font-semibold text-redwood-600 mb-3">1. View restaurant supply situation</div>
                 <p className="text-mountbatten_pink-600 text-sm leading-relaxed">
-                  Users can browse and search for nearby restaurants providing free meals, and understand the current supply situation of each restaurant.
+                  Users can browse and search for nearby restaurants providing suspended meals, and understand the current supply situation of each restaurant.
                 </p>
               </div>
 
