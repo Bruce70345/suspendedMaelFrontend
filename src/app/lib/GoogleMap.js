@@ -21,6 +21,37 @@ const mapContainerStyle = {
 // 預設地圖中心點（台北）
 const DEFAULT_CENTER = { lat: 25.0330, lng: 121.5654 };
 
+// Skeleton Loading 組件
+const MapSkeleton = () => {
+    return (
+        <div className="w-full h-full bg-gradient-to-br from-peach-100 to-desert_sand-100 rounded-5xl overflow-hidden relative animate-pulse">
+            {/* 地圖骨架背景 */}
+            <div className="absolute inset-0 bg-gradient-to-br from-peach-200/50 to-desert_sand-200/50"></div>
+
+            {/* 模擬地圖控制按鈕 */}
+            <div className="absolute top-4 right-4 space-y-2">
+                <div className="w-10 h-10 bg-white/60 rounded-lg"></div>
+                <div className="w-10 h-10 bg-white/60 rounded-lg"></div>
+            </div>
+
+            {/* 模擬地圖標記 */}
+            <div className="absolute top-1/4 left-1/3 w-6 h-6 bg-peach-400/70 rounded-full"></div>
+            <div className="absolute top-1/2 right-1/3 w-6 h-6 bg-light_coral-400/70 rounded-full"></div>
+            <div className="absolute bottom-1/3 left-1/2 w-6 h-6 bg-old_rose-400/70 rounded-full"></div>
+
+            {/* 載入文字 */}
+            <div className="absolute inset-0 flex items-center justify-center">
+                <div className="bg-white/90 backdrop-blur-md rounded-capsule px-6 py-3 shadow-soft">
+                    <div className="flex items-center space-x-3">
+                        <div className="w-5 h-5 border-2 border-peach-500 border-t-transparent rounded-full animate-spin"></div>
+                        <span className="text-mountbatten_pink-700 font-medium">Loading Map...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 function GoogleMap() {
     const { users, loading, error } = useUserLocations();
     const [mapError, setMapError] = useState(null);
@@ -112,31 +143,55 @@ function GoogleMap() {
     const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API;
     if (!apiKey) {
         console.error('GoogleMap - Missing Google Maps API key');
-        return <p>Error: Missing Google Maps API key</p>;
+        return (
+            <div className="w-full h-full flex items-center justify-center bg-red-50 rounded-5xl">
+                <div className="text-center">
+                    <div className="text-red-600 font-medium">Error: Missing Google Maps API key</div>
+                </div>
+            </div>
+        );
     }
 
-    // 載入狀態
+    // 載入狀態 - 使用 Skeleton
     if (loading) {
         console.log('GoogleMap - Showing loading state');
-        return <p>Loading...</p>;
+        return <MapSkeleton />;
     }
 
     // 錯誤狀態
     if (error) {
         console.error('GoogleMap - API error:', error);
-        return <p>Loading Map Error: {error}</p>;
+        return (
+            <div className="w-full h-full flex items-center justify-center bg-red-50 rounded-5xl">
+                <div className="text-center">
+                    <div className="text-red-600 font-medium">Loading Map Error: {error}</div>
+                </div>
+            </div>
+        );
     }
 
     // 地圖錯誤狀態
     if (mapError) {
         console.error('GoogleMap - Map error:', mapError);
-        return <p>Loading Map Error: {mapError}</p>;
+        return (
+            <div className="w-full h-full flex items-center justify-center bg-red-50 rounded-5xl">
+                <div className="text-center">
+                    <div className="text-red-600 font-medium">Loading Map Error: {mapError}</div>
+                </div>
+            </div>
+        );
     }
 
     // 無資料狀態
     if (!users || users.length === 0) {
         console.log('GoogleMap - No users data available');
-        return <p>No available location data</p>;
+        return (
+            <div className="w-full h-full flex items-center justify-center bg-desert_sand-50 rounded-5xl">
+                <div className="text-center">
+                    <div className="text-mountbatten_pink-600 font-medium">No available location data</div>
+                </div>
+            </div>
+        );
     }
 
     const handleMapLoad = () => {
